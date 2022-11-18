@@ -4,11 +4,18 @@ import com.example.facturaapi.model.Client
 import com.example.facturaapi.repository.ClientRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 @Service
 class ClientService {
     @Autowired
@@ -21,12 +28,18 @@ class ClientService {
     fun save(client:Client):Client{
         return clientRepository.save(client)
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
     fun update(client: Client): Client{
         try {
             clientRepository.findById(client.id)
                 ?: throw Exception("Id no existe")
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
             return clientRepository.save(client)
         }
         catch(ex:Exception){
@@ -34,6 +47,7 @@ class ClientService {
         }
     }
 
+<<<<<<< HEAD
     fun updateName(client:Client): Client {
         try{
             val response = clientRepository.findById(client.id)
@@ -47,4 +61,6 @@ class ClientService {
             throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
         }
     }
+=======
+>>>>>>> origin/main
 }
