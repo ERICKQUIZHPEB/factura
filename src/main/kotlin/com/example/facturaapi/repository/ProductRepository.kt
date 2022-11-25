@@ -1,10 +1,11 @@
 package com.example.facturaapi.repository
 
-import com.example.facturaapi.model.Client
+import com.example.facturaapi.model.Product
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface ClientRepository:JpaRepository<Client, Long> {
-    fun findById(id: Long?): Client?
+interface ProductRepository:JpaRepository<Product, Long> {
+
+    fun findById(id: Long?): Product?
 }

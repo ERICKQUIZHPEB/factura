@@ -4,20 +4,17 @@ import java.util.*
 import javax.persistence.*
 
 @Entity
-@Table(name="invoice")
-class Invoice {
+@Table(name="product")
+class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(updatable = false)
     var id: Long? = null
 
-    var code:String? = null
+    var description:String? = null
 
-    @Column(name="create_at")
-    var createAt: Date? = null
+    var brand: String? = null
 
-    var total:Double? = null
+    var stock:Double? = null
 
-    @Column(name="client_id")
-    var clientId: Long?= null
 }
