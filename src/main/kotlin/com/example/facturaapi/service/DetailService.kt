@@ -1,7 +1,6 @@
 package com.example.facturaapi.service
 
 import com.example.facturaapi.model.Detail
-import com.example.facturaapi.repository.InvoiceRepository
 import com.example.facturaapi.repository.DetailRepository
 import com.example.facturaapi.repository.ProductRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,9 +14,6 @@ class DetailService {
     lateinit var detailRepository: DetailRepository
 
     @Autowired
-    lateinit var invoiceRepository: InvoiceRepository
-
-    @Autowired
     lateinit var productRepository: ProductRepository
 
     fun list():List<Detail>{
@@ -27,12 +23,14 @@ class DetailService {
     fun save(detail: Detail):Detail{
 
         try{
-            invoiceRepository.findById(detail.invoiceId)
-                ?: throw Exception("El Id ${detail.invoiceId} de invoicee no existe")
+            val response=detailRepository.save(detail)
+            val responseProduct=productRepository.findById(response.productId)
+            responseProduct?.apply{
+                    stock=stock?.minus(detail.quantity!!)
+                }
+            productRepository.save(responseProduct)
 
-            return detailRepository.save(detail)
-
-
+            return response
         }
         catch(ex:Exception){
             throw ResponseStatusException(HttpStatus.NOT_FOUND, ex.message)
@@ -40,17 +38,6 @@ class DetailService {
 
     }
 
-    fun saveProduct(detail: Detail):Detail{
-        try{
-            productRepository.findById(detail.productId)
-                ?: throw Exception("El Id ${detail.productId} de product no existe")
-
-            return detailRepository.save(detail)
-        }
-        catch(ex:Exception){
-            throw ResponseStatusException(HttpStatus.NOT_FOUND, ex.message)
-        }
-    }
 
     fun update(detail: Detail): Detail{
         try{
@@ -64,7 +51,7 @@ class DetailService {
         }
     }
 
-    fun updateTotal(detail: Detail): Detail {
+    fun updateQuantity(detail: Detail): Detail {
         try{
             val response = detailRepository.findById(detail.id)
                 ?: throw Exception("ID no existe")

@@ -33,7 +33,7 @@ class ProductService {
         }
     }
 
-    fun updateTotal(product: Product): Product {
+    fun updateStock(product: Product): Product {
         try{
             val response = productRepository.findById(product.id)
                 ?: throw Exception("ID no existe")

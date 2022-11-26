@@ -3,6 +3,7 @@ package com.example.facturaapi.model
 import java.util.*
 import javax.persistence.*
 
+
 @Entity
 @Table(name="invoice")
 class Invoice {

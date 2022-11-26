@@ -30,7 +30,7 @@ class ProductController {
     }
 
     @PatchMapping
-    fun updateTotal (@RequestBody product: Product): ResponseEntity<Product> {
-        return ResponseEntity(productService.updateTotal(product), HttpStatus.OK)
+    fun updateStock (@RequestBody product: Product): ResponseEntity<Product> {
+        return ResponseEntity(productService.updateStock(product), HttpStatus.OK)
     }
 }

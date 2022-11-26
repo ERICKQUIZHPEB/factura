@@ -1,10 +1,9 @@
 package com.example.facturaapi.model
 
-import java.util.*
 import javax.persistence.*
 
 @Entity
-@Table(name="invoice")
+@Table(name="detail")
 class Detail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -17,5 +16,5 @@ class Detail {
     @Column(name="product_id")
     var productId: Long?= null
 
-    var  quantity:Double? = null
+    var  quantity: Double? = null
 }

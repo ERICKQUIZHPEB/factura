@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import org.springframework.web.server.ResponseStatusException
+
 
 @RestController
 @RequestMapping( "/detail")
@@ -26,7 +26,7 @@ class DetailController {
     }
 
     @PostMapping
-    fun saveProduct(@RequestBody detail: Detail): Detail {
+    fun saveProductId(@RequestBody detail: Detail): Detail {
         return detailService.save(detail)
 
     }
@@ -37,7 +37,7 @@ class DetailController {
     }
 
     @PatchMapping
-    fun updateTotal (@RequestBody detail: Detail): ResponseEntity<Detail> {
-        return ResponseEntity(detailService.updateTotal(detail), HttpStatus.OK)
+    fun updateQuantity (@RequestBody detail: Detail): ResponseEntity<Detail> {
+        return ResponseEntity(detailService.updateQuantity(detail), HttpStatus.OK)
     }
 }
